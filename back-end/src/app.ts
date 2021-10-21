@@ -6,9 +6,10 @@ import { Server } from 'socket.io'
 import cors from 'cors'
 
 const app = express();
-app.use(cors())
 
 const serverHttp = http.createServer(app);
+
+app.use(cors())
 
 const io = new Server(serverHttp, {
     cors: {
@@ -20,8 +21,9 @@ io.on("connection",socket => {
     console.log(`Usuário conectado no socket: ${socket.id}`)
 })
 
-app.use(router);
 app.use(express.json())
+
+app.use(router);
 
 app.get("/github", (request,response) => {
     response.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)

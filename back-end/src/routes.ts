@@ -7,7 +7,7 @@ import { ensureAutheticated } from "./middleware/ensureAuthenticated";
 
 const router = Router();
 
-router.post("/autheticate", new AutheticateUserController().handle)
+router.post("/authenticate", new AutheticateUserController().handle)
 
 router.post("/messages", ensureAutheticated ,new CreateMessageController().handle)
 
